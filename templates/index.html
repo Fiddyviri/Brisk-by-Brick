@@ -1,0 +1,34 @@
+{% extends "header.html" %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brisk by Brick</title>
+  </head>
+  <body>
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <section class="hero1">
+      <div class="hero-content">
+        <h2>
+          A Space for <br />
+          Builders
+        </h2>
+        <div class="note1">You vs You</div>
+        <div class="note2">DREAM IT <br />BUILD IT <br />LIVE IT</div>
+        <div class="note3">Your Journey <br />start Here</div>
+        <div class="note4">
+          Greatness begins at the edge of your comfort zone
+        </div>
+        <div class="note5">
+          One idea, <br />one action,<br />
+          one impact <br />at a time
+        </div>
+      </div>
+    </section>
+
+    {% endblock content %}
+  </body>
+</html>

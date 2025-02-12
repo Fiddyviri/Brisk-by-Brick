@@ -1,0 +1,7 @@
+{% comment %} {% if not user.is_authenticated %} {% include "header.html" %} {%
+else%}
+
+<p></p>
+{% block content %}{% endblock content%}
+<p>{% endif %}</p>
+{% endcomment %}

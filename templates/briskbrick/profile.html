@@ -1,0 +1,42 @@
+{% extends "briskbrick/app_nav.html" %} {% load static %}{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<h2>Profile</h2>
+
+<div class="details">
+    <p class="pro-btn">
+        <a href="{% url 'briskbrick:settings' %}" class="edit" style='background: rgb(72, 72, 245);
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 50px;
+            margin: 0;'>Edit Profile</a> 
+        <a href="{% url 'logout' %}">Logout</a></p>
+    <div class="pro-row">
+        <div class="pro-img"></div>
+        <div class="pro-col">
+            <p>{{ user.first_name }} {{ user.last_name }}</p>
+            <p>@{{ user.username }}</p>
+        </div>
+    </div>
+</div>
+{% comment %}
+<p><strong>Joined:</strong> {{ user.date_joined }}</p>
+{% endcomment %} <div class="blog-grid"> {% for user_post in user_posts %}
+<div class='post-card'>
+    <a href="{% url 'briskbrick:post_detail' user_post.id %}">
+      <p>
+        {% if user_post.is_anonymous %} Anonymous {% else %}
+        <p href="">{{ user_post.user.username }}</p>{% endif %} {{user_post.created_at |date:'d F,Y' }}
+      </p>
+      <p>{{ user_post.content|truncatechars:300 }}</p>
+      <div class="col">
+        <small>Comments {{ user_post.total_comments }}</small>
+        <small>likes {{ user_post.total_likes }}</small>
+      </div></a>
+  </div>{% endfor %}
+</div>
+
+
+
+{% endblock %}

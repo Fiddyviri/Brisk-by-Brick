@@ -1,0 +1,27 @@
+{% extends "briskbrick/app_nav.html" %} {% load static %}{%block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<p></p>
+<div class="tit-act-btn">
+  <h2>Community Forum</h2>
+  <a href="{% url 'briskbrick:create_post' %}">Add post</a>
+</div>
+<ul>
+  <div class="blog-grid">
+    {% for fpost in fposts %}
+    <div class='post-card'>
+      <a href="{% url 'briskbrick:post_detail' fpost.id %}">
+        <p>
+          {% if fpost.is_anonymous %} Anonymous {% else %}
+          <p href="">{{ fpost.user.username }}</p>{% endif %} {{fpost.created_at |date:'d F,Y' }}
+        </p>
+        <p>{{ fpost.content|truncatechars:300 }}</p>
+        <div class="col">
+          <small>Comments {{ fpost.total_comments }}</small>
+          <small>likes {{ fpost.total_likes }}</small>
+        </div></a>
+    </div>
+
+    {% endfor %}
+  </div>
+</ul>
+{% endblock content%}

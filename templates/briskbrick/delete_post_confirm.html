@@ -1,0 +1,9 @@
+{% comment %} {% extends "base.html" %} {% endcomment %} {% block content %}
+<h2>Are you sure you want to delete this post?</h2>
+<p>{{ fpost.content }}</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, Delete</button>
+  <a href="{% url 'briskbrick:post_detail' fpost.id %}">Cancel</a>
+</form>
+{% endblock %}

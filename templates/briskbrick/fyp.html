@@ -1,0 +1,57 @@
+{% extends "briskbrick/app_nav.html" %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<div class="task">
+  <div class="tit-act-btn">
+    <h2>Tasks</h2>
+    <a href="{% url 'briskbrick:task_create' %}">Add Task</a>
+  </div>
+    <ul>
+      <div class="blog-grid">
+      {% for task in tasks %}
+      <div class="card {% if task.completed %} completed{% endif %}">
+        <p>{{ task.task_name|truncatechars:50 }}</p>
+        <div class="row">
+          <small class="tags {% if task.priority == 'not_urgent' %}not-urgent {% elif task.priority == 'not_important' %}not-important 
+          {% elif task.priority == 'urgent' %}urgent {% elif task.priority == 'important' %}is-important {% elif task.priority == 'both' %}is-both
+          {% endif %}">{{ task.get_priority_display }}</small>
+          <div class="act-btn">
+            <a href="{% url 'briskbrick:task_update' task.id %}">E</a>
+            <a href="{% url 'briskbrick:task_delete' task.id %}">D</a>
+          </div>
+        </div>
+      </div>
+     
+      {% empty %}
+      <h5>No task found</h5>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="goal">
+    <div class="tit-act-btn">
+      <h2>Goals</h2>
+      <a href="{% url 'briskbrick:goal_create' %}">Add Goal</a>
+    </div>
+    <ul>
+      <div class="blog-grid">
+      {% for goal in goals %}
+      <div class="card">
+        {{ goal.goal_name }}
+        <p>Reward: <span>{{ goal.reward }}</span></p>
+        <div class="row">
+          <small class="tags {% if goal.status == 'on_hold' %}on-hold {% elif goal.status == 'pending' %}pending 
+          {% elif goal.status == 'in_progress' %}in-progress {% elif goal.status == 'completed' %}is-completed
+          {% endif %}">{{ goal.get_status_display }}</small>
+          <div class="act-btn">
+            <a href="{% url 'briskbrick:goal_update' goal.id %}">E</a>
+            <a href="{% url 'briskbrick:goal_delete' goal.id %}">D</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <h5>No goal found</h5>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% endblock content %}
+</div>

@@ -1,0 +1,45 @@
+{% extends "header.html" %} {% load static %}{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<div class="form-container">
+  <h2>THE <br />BLOG</h2>
+
+  {% comment %} 
+  <form method="post">
+    {% csrf_token %}
+    <label for="Name">First Name</label>
+    {{ form.first_name }}
+    <label for="Email">Email Address</label>
+    {{ form.email }}
+    <label for="phone">Phone <small>(Optional)</small></label>
+    {{ form.phone }}
+    <button type="submit" class="subscribe-btn">SUBSCRIBE</button>
+  </form>
+  {% endcomment %}
+</div>
+<section>
+  <div class="blog-grid">
+    {% for post in post_list %}
+    <div class="blog-post">
+      <a href="{% url 'post_detail' post.pk %}">
+        <div class="post-entry">
+          <h2>{{ post.title }}</h2>
+          <h4>{{post.author}}</h4>
+          <img src="{{post.image.url}}" alt="" />
+          <small>{{post.date|date:'d F,Y'}}</small>
+        </div>
+      </a>
+    </div>
+    {%empty%}
+    <p>No blog posts yet. Stay tuned!</p>
+    {% endfor %}
+  </div>
+</section>
+<section class="blog-cta">
+  <a href=""
+    ><h2>
+      Become a <br />
+      Builder
+    </h2></a
+  >
+</section>
+{% endblock content %}

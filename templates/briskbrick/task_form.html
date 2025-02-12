@@ -1,0 +1,25 @@
+{% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<h2>{% if form.instance.id %}Edit{% else %}Create{% endif %} Task</h2>
+<form method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="{{ form.task_name.id_for_label}}">Task Name:</label>
+    <p class="input">{{form.task_name}}</p>
+  </div>
+  <div class="form-group">
+    <label for="{{ form.priority.id_for_label}}">Priority:</label>
+    <p class="input">{{form.priority}}</p>
+  </div>
+  <div class="form-group">
+    <label for="{{ form.completed.id_for_label}}">Completed:</label
+    >{{form.completed}}
+  </div>
+  <div class="form-group">
+    <label for="{{ form.due_date.id_for_label}}">Due Date:</label>
+    <p class="input">{{form.due_date}}</p>
+  </div>
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'briskbrick:fyp' %}">Cancel</a>
+{% endblock %}
