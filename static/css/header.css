@@ -4,6 +4,7 @@ body{
     padding: 0;
     background: rgb(248, 248, 248);
     user-select: none;
+    -webkit-user-select: none;
     overflow-x: hidden;
     height: 100vh;
 }
@@ -22,6 +23,7 @@ header{
     top: 0;
     z-index: 900;
     backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 
 .logo{
@@ -34,7 +36,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 70%;
+    /* width: 70%; */
 }
 .nav-links{
     list-style: none;
@@ -116,15 +118,16 @@ footer{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background: greenyellow; */
     padding: 20px 12px;
     font-size: 14px;
+    position: absolute;
 }
 footer a{
     text-decoration: none;
     color: black;
     padding: 0px 8px;
 }
+
 /* responsive */
 @media (max-width: 992px) {
     nav{

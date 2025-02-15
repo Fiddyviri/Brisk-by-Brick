@@ -1,24 +1,28 @@
-{% load static %}
+{% load static %} {% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% progressive_web_app_meta %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brisk by Brick</title>
-    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% comment %}
+    <link rel="script" href="{% static 'js/script.css' %}" />
+    {% endcomment %} {% comment %}
+    <link rel="manifest" href="{% static 'manifest.json' %}" />
+    {% endcomment %}
   </head>
   <body>
-    <main>
-      {% block content %}{% endblock %}
-      <nav class="bottom-nav">
-        <a href="{% url 'briskbrick:fyp' %}">🏠</a>
-        <a href="{% url 'briskbrick:forum_list' %}">🔗</a>
-        <a href="{% url 'briskbrick:board' %}">📂</a>
-        <a href="{% url 'briskbrick:notification' %}">N📂N</a>
-        <a href="{% url 'briskbrick:profile' username=request.user.username%}"
-          >👤</a
-        >
-      </nav>
-    </main>
+    {% block content %}{% endblock %}
+    <nav class="bottom-nav">
+      <a href="{% url 'briskbrick:fyp' %}">🏠</a>
+      <a href="{% url 'briskbrick:forum_list' %}">🔗</a>
+      <a href="{% url 'briskbrick:board' %}">📂</a>
+      {% if user.is_authenticated %}<a
+        href="{% url 'briskbrick:profile' username=request.user.username%}"
+        >👤</a
+      >{% endif %}
+    </nav>
   </body>
 </html>

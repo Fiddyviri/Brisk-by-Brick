@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -24,8 +25,10 @@ urlpatterns = [
     path('blog/', include('blogapp.urls')),
     path('', include('brick.urls')),
     path('', include('pwa.urls')),
-    path("auth/", include('accounts.urls')),
+    path("accounts/", include('accounts.urls')),
     path("app/", include('briskbrick.urls')),
+    # path('manifest.json', TemplateView.as_view(template_name="manifest.json", content_type='application/json')),
+    # path('service-worker.js', TemplateView.as_view(template_name="service-worker.js", content_type='application/javascript')),
 ]
 
 if settings.DEBUG:

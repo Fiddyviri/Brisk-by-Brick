@@ -25,7 +25,7 @@ def fyp(request):
         'tasks' : tasks, 
         'goals' : goals, 
         'letters' : letters
-    }
+        }
     return render(request,'briskbrick/fyp.html', content)
 
 @login_required
@@ -187,12 +187,12 @@ def add_comment(request, fpost_id):
                 mentioned_user = User.objects.filter(username=username).first()
                 if mentioned_user:
                     # Notify user (if needed, add a notification system)
-                     Notification.objects.create(user=fpost.user, 
-                                message=f"{User.username} commented on your post:{comment[:50]}")
-                pass  
+                    #  Notification.objects.create(user=fpost.user, 
+                    #             message=f"{User.username} commented on your post:{comment[:50]}")
+                  pass  
 
-                Notification.objects.create(user=fpost.user, 
-                                message=f"{User.username} commented on your post:{comment[:50]}")
+                # Notification.objects.create(user=fpost.user, 
+                #                 message=f"{User.username} commented on your post:{comment[:50]}")
             return redirect("briskbrick:post_detail", fpost_id=fpost.id)
     else:
         form = ForumCommentForm()

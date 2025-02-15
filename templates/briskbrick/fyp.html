@@ -3,12 +3,12 @@
 <div class="task">
   <div class="tit-act-btn">
     <h2>Tasks</h2>
-    <a href="{% url 'briskbrick:task_create' %}">Add Task</a>
+    <a href="{% url 'briskbrick:task_create' %}" class='add'>Add Task</a>
   </div>
     <ul>
       <div class="blog-grid">
       {% for task in tasks %}
-      <div class="card {% if task.completed %} completed{% endif %}">
+      <div class="card {% if task.completed %} completed {% endif %}">
         <p>{{ task.task_name|truncatechars:50 }}</p>
         <div class="row">
           <small class="tags {% if task.priority == 'not_urgent' %}not-urgent {% elif task.priority == 'not_important' %}not-important 
@@ -29,10 +29,10 @@
   <div class="goal">
     <div class="tit-act-btn">
       <h2>Goals</h2>
-      <a href="{% url 'briskbrick:goal_create' %}">Add Goal</a>
+      <a href="{% url 'briskbrick:goal_create' %}" class='add'>Add Goal</a>
     </div>
     <ul>
-      <div class="blog-grid">
+      <div class="grid">
       {% for goal in goals %}
       <div class="card">
         {{ goal.goal_name }}

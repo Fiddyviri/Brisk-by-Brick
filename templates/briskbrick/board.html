@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 <div class="letter">
   <h2>My Letter</h2>
-  <a href="{% url 'briskbrick:letter_create' %}">Add Letter</a>
+  <a href="{% url 'briskbrick:letter_create' %}" class="add">Add Letter</a>
   <ul>
     {% for letter in letters %}
     <li>

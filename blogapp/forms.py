@@ -1,6 +1,8 @@
 from django import forms
+# from .models import NewsletterForm
 
-class NewsletterForm(forms.Form):
-    first_name = forms.CharField()
-    email = forms.EmailField()
-    phone = forms.CharField( max_length=15, required=False)
+
+# class Newsletter(forms.ModelForm):
+#     class Meta:
+#         model = NewsletterForm
+#         fields = ['first_name', 'email', 'phone']

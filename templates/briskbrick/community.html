@@ -1,10 +1,26 @@
-{% extends "briskbrick/app_nav.html" %} {% load static %}{%block content %}
+{% if not user.is_authenticated %}
+<header>
+  <div class="logo"><img src="" alt="">Brisk by Brick</div>
+  <div class="nav-links">
+    <input type="search" name="" id="" placeholder="search community">
+    <a href="{% url "login" %}" ><button class="login" style='background: transparent; border: 3px solid blue; color:black'>Login</button></a>
+  </div>
+</header>
+{% else %}
+ {% load static %}{%block content %}
+ <link rel="stylesheet" href="{% static 'css/header.css' %}" />
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 <p></p>
+{% if user.is_authenticated %}
 <div class="tit-act-btn">
   <h2>Community Forum</h2>
-  <a href="{% url 'briskbrick:create_post' %}">Add post</a>
+  
+  <a href="{% url 'briskbrick:create_post' %}" class='add'>Add post</a>
+  {% comment %} {% else %}<a href="{% url "login" %}" ><button class="login" style='padding: 14px 40px; background: linear-gradient( 75deg, rgb(142, 50, 247), rgb(40, 17, 248));font-size: 16px; border-radius: 6px; color:white'>Login</button></a> {% endcomment %}
+  
+  
 </div>
+{% endif %}
 <ul>
   <div class="blog-grid">
     {% for fpost in fposts %}
@@ -25,3 +41,5 @@
   </div>
 </ul>
 {% endblock content%}
+{% include "briskbrick/app_nav.html" %}
+{% endif %}
